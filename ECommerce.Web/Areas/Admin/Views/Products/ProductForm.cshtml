@@ -1,0 +1,66 @@
+﻿@model Product
+<div>
+    <a asp-action="List" asp-controller="Products" class="mb-2  btn btn-info">Back To List</a>
+</div>
+<div class=" p-2 bg-danger col-12">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card col-md-10">
+                <div class="card-header text-light bg-dark">@(Model.Id == null || Model.Id == 0 ? "Add Product" : "Update Product")</div>
+
+                <div class=" card-body bg-danger-subtle">
+                    <form asp-controller="Products" asp-action="Upsert" method="post" enctype="multipart/form-data">
+                        <input asp-for="Id" hidden />
+                        <input asp-for="ImageUrl" hidden />
+
+                        <div>
+                            <select asp-for="CategoryId" asp-items="@ViewBag.categorySelectListItems" class="form-select">
+                                <option disabled selected>Select Category</option>
+                            </select>
+
+                        </div>
+                        <div>
+                            <label asp-for="Name"></label>
+                            <input type="text" asp-for="Name" class="form-control" placeholder="Enter Name" />
+                        </div>
+                        <div>
+                            <label asp-for="Description"></label>
+                            <input type="text" asp-for="Description" class="form-control" placeholder="Enter Category" />
+                        </div>
+                        <div>
+                            <label asp-for="DateOfManufacture"></label>
+                            <input type="date" asp-for="DateOfManufacture" class="form-control" placeholder="Enter Category" />
+                        </div>
+                        <div>
+                            <label asp-for="Price"></label>
+                            <input type="number" class="form-control" asp-for="Price" />
+                        </div>
+                        <div>
+                            <label>Select Image</label>
+                            <input type="file" class="form-control" name="file" />
+                        </div>
+
+                        <div class="mt-3     text-center">
+
+                            <input type="submit" value=@(Model.Id == null || Model.Id==0 ? "Create" : "Update") class=" btn btn-dark" />
+
+                        </div>
+
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header text-light bg-dark" ">Image</div>
+                <div class="card-body">
+                    <div class="card-img">
+                        <img src="@Model.ImageUrl" height="300" width="300" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>

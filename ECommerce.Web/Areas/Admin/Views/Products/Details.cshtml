@@ -1,0 +1,15 @@
+﻿@model Product
+<div>
+    <a asp-action="List" asp-controller="Products" class="mb-2 btn btn-info">Back To List</a>
+</div>
+<div class="card col-md-5">
+    <div class="card card-header text-bg-dark">Details of @Model.Name</div>
+    <div class="card-body text-black">
+        <p>Name: @Model.Name</p>
+        <p>Category: @Model.Category</p>
+        <p>Date Of Manufacture: @Model.DateOfManufacture.ToString(("dddd, dd MMMM yyyy"))</p>
+        <p>Description: @Model.Description</p>
+        <p>Price: @Model.Price</p>
+
+    </div>
+</div>

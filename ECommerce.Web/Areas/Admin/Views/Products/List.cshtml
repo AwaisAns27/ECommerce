@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Product>
+
+@if (TempData["Success"] != null)
+{
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script>
+        toastr.info('@TempData["Success"]')
+    </script>
+}
+
+<div class="mb-2">
+    <a class="btn btn-dark" asp-action="Upsert" asp-controller="Products">Add</a>
+    </div>
+<table class="table table-bordered table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Manufacture Date</th>
+            <th>Price</th>
+            <th>Actions</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var product in Model)
+        {<tr class="align-baseline">
+            <td>@product.Id</td>
+            <td><a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id">@product.Name</a></td>
+            <td>
+                <img src="@product.ImageUrl" alt="No image available" height="70x" width="70x">
+            </td>
+            <td>@product.Category.Name</td>
+            <td>@product.Description</td>
+                <td>@product.DateOfManufacture.ToString(("dddd, dd MMMM yyyy"))</td>
+            <td>@product.Price</td>
+                <td>
+                    <a class=" btn btn-success btn-outline-light" asp-controller="Products" asp-action="Upsert" asp-route-id="@product.Id"> <i class="bi bi-pencil-square"></i>Edit</a>
+                    <a class=" btn btn-info btn-outline-light " asp-controller="Products" asp-action="Delete" asp-route-id="@product.Id"><i class="bi bi-trash3-fill"></i>Delete</a>
+
+                </td>
+
+        </tr>
+            
+        }
+    </tbody>
+</table>

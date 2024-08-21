@@ -1,0 +1,36 @@
+﻿@model Category
+<a asp-action="List" asp-controller="Category" class="btn btn-primary">Back</a>
+<div class=" card col-md-5 mt-2">
+    
+    <div class="card-header">Details</div>
+    <div class="card-body">
+        <form asp-controller="Category" asp-action="Upsert" method="post">
+            <input asp-for="Id" hidden>
+
+            <div class=" container">
+                <div class=" row">
+                    <div class=" row-cols-6">
+                        <div>
+                            <label asp-for="Name"></label>
+                            <input type="text" asp-for="Name" />
+                        </div>
+                        <div>
+                            <label asp-for="MaxTime"></label>
+                            <input type="text" asp-for="MaxTime" />
+                        </div>
+
+                        <div class="mt-2">
+                            
+                            <input  type="submit" value=@(Model.Id ==null || Model.Id ==0? "Create" : "Update") class="btn btn-success " />
+
+                        </div>
+                        
+                    </div>
+
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+</div>
